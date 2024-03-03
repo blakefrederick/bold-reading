@@ -1,3 +1,17 @@
+let boldEnabled = true
+
+// Toggle bolding when b key is pressed
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'b') {
+        boldEnabled = !boldEnabled
+        if (boldEnabled) {
+            document.body.classList.add('br')
+        } else {
+            document.body.classList.remove('br')
+        }
+    }
+})
+
 // Process a single word and return the bold text version
 function toProcessWord(word) {
     const cutoff = Math.ceil(word.length * 0.6) // Bold the first 60% of the word
@@ -10,8 +24,8 @@ function toProcessWord(word) {
 function processTextNode(node) {
     const words = node.textContent.trim().split(/\s+/)
     const processedWords = words.map(word => {
-        const [boldPart, regularPart] = toProcessWord(word)
-        return `<span class='bold'>${boldPart}</span>${regularPart}`
+        const [boldPart, otherPart] = toProcessWord(word)
+        return `<span class='br-bold'>${boldPart}</span>${otherPart}`
     })
     const newHtml = processedWords.join(' ')
     const span = document.createElement('span')
@@ -30,13 +44,12 @@ function applyBoldReadingToElement(element) {
     })
 }
 
-// Actually bold it
 const style = document.createElement('style')
 style.textContent = `
-  .bold {
-    font-weight: bold
+  .br .br-bold {
+    font-weight: bold;
   }
 `
 document.head.appendChild(style)
-
 applyBoldReadingToElement(document.body)
+document.body.classList.add('br')
