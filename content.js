@@ -36,12 +36,17 @@ function toProcessWord(word) {
 function processTextNode(node) {
     // filter out some non-text tags
     if (!node.parentNode.closest(nodeExclusionList)) {
-        const words = node.textContent.trim().split(/\s+/)
-        const processedWords = words.map(word => {
-            const [boldPart, otherPart] = toProcessWord(word)
+        const spaceWords = node.textContent.match(/\S+|\s+/g) // word and space array
+        const processedWords = spaceWords.map(segment => {
+            // Space
+            if (/\s+/.test(segment)) {
+                return segment
+            }
+            // Word detected
+            const [boldPart, otherPart] = toProcessWord(segment)
             return `<span class='br-bold'>${boldPart}</span><span class='br-other'>${otherPart}</span>`
         })
-        const newHtml = processedWords.join(' ')
+        const newHtml = processedWords.join('')
         const span = document.createElement('span')
         span.innerHTML = newHtml
         node.parentNode.replaceChild(span, node)
