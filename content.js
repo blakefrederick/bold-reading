@@ -1,5 +1,6 @@
 let boldEnabled = true
-let fadeEnabled = false
+let fadeLevels = [1, 0.6, 0.3, 0]
+let currentFadeIndex = 0
 
 // Toggle bold when b is pressed, fade when f is pressed
 document.addEventListener('keydown', function(event) {
@@ -11,12 +12,8 @@ document.addEventListener('keydown', function(event) {
             document.body.classList.remove('br')
         }
     } else if (event.key === 'f') {
-        fadeEnabled = !fadeEnabled
-        if (fadeEnabled) {
-            document.body.classList.add('fade')
-        } else {
-            document.body.classList.remove('fade')
-        }
+        currentFadeIndex = (currentFadeIndex + 1) % fadeLevels.length
+        document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
     }
 })
 
@@ -57,10 +54,11 @@ style.textContent = `
   .br .br-bold {
     font-weight: bold;
   }
-  .fade .br-other {
-    opacity: 0.6; // arbitrary
+  .br-other {
+    opacity: var(--fade-level, 1);
   }
 `
 document.head.appendChild(style)
+document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
 applyBoldReadingToElement(document.body)
 document.body.classList.add('br')
