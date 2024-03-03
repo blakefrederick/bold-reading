@@ -8,8 +8,8 @@ How to install:
 3. Click Load unpacked and pick this folder
 
 Options:
-b - bold 
-f - fade non-bold text
+- b - bold 
+- f - fade non-bold text
 
 **Example:**
 

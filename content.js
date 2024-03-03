@@ -27,15 +27,18 @@ function toProcessWord(word) {
 
 // Process text node and apply br bold and fade classes
 function processTextNode(node) {
-    const words = node.textContent.trim().split(/\s+/)
-    const processedWords = words.map(word => {
-        const [boldPart, otherPart] = toProcessWord(word)
-        return `<span class='br-bold'>${boldPart}</span><span class='br-other'>${otherPart}</span>`
-    })
-    const newHtml = processedWords.join(' ')
-    const span = document.createElement('span')
-    span.innerHTML = newHtml
-    node.parentNode.replaceChild(span, node)
+    // no svgs, imgs
+    if (!node.parentNode.closest('svg, img')) {
+        const words = node.textContent.trim().split(/\s+/)
+        const processedWords = words.map(word => {
+            const [boldPart, otherPart] = toProcessWord(word)
+            return `<span class='br-bold'>${boldPart}</span><span class='br-other'>${otherPart}</span>`
+        })
+        const newHtml = processedWords.join(' ')
+        const span = document.createElement('span')
+        span.innerHTML = newHtml
+        node.parentNode.replaceChild(span, node)
+    }
 }
 
 // Recursively apply bold and fade to all text nodes within an element
