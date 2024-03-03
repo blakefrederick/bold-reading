@@ -8,14 +8,13 @@ How to install:
 3. Click Load unpacked and pick this folder
 
 Options:
-- b - bold 
-- f - fade non-bold text
+- b - toggle bold 
+- f - cycle fade
 
-**Example:**
+**Examp**le:
+
+![An animated gif showing the results of this extension applied to the Python for Data Analysis, 3E Chapter 9 Plotting and Visualization, gif animation shows the effects of toggling bold and cycling fade levels.](https://github.com/blakefrederick/bold-reading/assets/4672139/289ed798-58ea-4bde-8cc4-20844e7cbd0c)
+
+**Examp**le:
 
 <img width="700" alt="A screenshot of the Bold Reading (60% of the first part of each word is bolded) applied to a Github issue about icon16.png in the context of a Chrome extension discussion." src="https://github.com/blakefrederick/bold-reading/assets/4672139/393253a6-3365-4bf5-b78d-633a21d20b4d">
-
-<br/><br/>
-**Another example:**
-
-<img width="700" alt="A screenshot of the Bold Reading (60% of the first part of each word is bolded) applied a snippet of Python for Data Analysis, 3rd Edition." src="https://github.com/blakefrederick/bold-reading/assets/4672139/5026c7a0-d5e6-4c03-874f-50ec4c20fbcd">
