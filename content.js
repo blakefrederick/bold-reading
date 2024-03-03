@@ -25,7 +25,7 @@ function toProcessWord(word) {
 // Process text node and apply br bold and fade classes
 function processTextNode(node) {
     // no svgs, imgs
-    if (!node.parentNode.closest('svg, img')) {
+    if (!node.parentNode.closest('svg, img, canvas, style')) {
         const words = node.textContent.trim().split(/\s+/)
         const processedWords = words.map(word => {
             const [boldPart, otherPart] = toProcessWord(word)
