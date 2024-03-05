@@ -1,8 +1,10 @@
 const nodeExclusionList = 'svg, img, canvas, style, script, iframe, video, audio'
 
 let boldEnabled = true
-let fadeLevels = [1, 0.6, 0.3, 0]
 let currentFadeIndex = 0
+let fadeLevels = [1, 0.6, 0.3, 0]
+let colourIndex = 0
+const colours = ['indigo', 'darkblue', 'green', 'orange', 'black']
 
 // Toggle bold when b is pressed, fade when f is pressed
 document.addEventListener('keydown', function(event) {
@@ -18,6 +20,14 @@ document.addEventListener('keydown', function(event) {
         } else if (event.key === 'f') {
             currentFadeIndex = (currentFadeIndex + 1) % fadeLevels.length
             document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
+        }
+        // Secret options
+        else if (event.key === '0') {
+            colourIndex = (colourIndex + 1) % colours.length
+            const newcolour = colours[colourIndex]
+            document.querySelectorAll('.br-bold').forEach(element => {
+                element.style.colour = newcolour
+            })
         }
     }
 })
