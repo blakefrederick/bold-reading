@@ -17,7 +17,8 @@ document.addEventListener('keydown', function(event) {
             } else {
                 document.body.classList.remove('br')
             }
-        } else if (event.key === 'f') {
+        } 
+        else if (event.key === 'f') {
             currentFadeIndex = (currentFadeIndex + 1) % fadeLevels.length
             document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
         }
@@ -27,6 +28,11 @@ document.addEventListener('keydown', function(event) {
             const newcolour = colours[colourIndex]
             document.querySelectorAll('.br-bold').forEach(element => {
                 element.style.colour = newcolour
+            })
+        }
+        else if (event.key === '1') {
+            document.querySelectorAll(`*:not(${nodeExclusionList})`).forEach(element => {
+                element.classList.add('vanish')
             })
         }
     }
@@ -84,6 +90,19 @@ style.textContent = `
   }
   .br-other {
     opacity: var(--fade-level, 1);
+  }
+  @keyframes vanishEffect {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-20px);
+    }
+  }
+  .vanish {
+    animation: vanishEffect 15s forwards;
   }
 `
 document.head.appendChild(style)
