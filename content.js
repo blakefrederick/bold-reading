@@ -6,16 +6,19 @@ let currentFadeIndex = 0
 
 // Toggle bold when b is pressed, fade when f is pressed
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'b') {
-        boldEnabled = !boldEnabled
-        if (boldEnabled) {
-            document.body.classList.add('br')
-        } else {
-            document.body.classList.remove('br')
+    const isInputField = event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA' || event.target.isContentEditable
+    if (!isInputField) {
+        if (event.key === 'b') {
+            boldEnabled = !boldEnabled
+            if (boldEnabled) {
+                document.body.classList.add('br')
+            } else {
+                document.body.classList.remove('br')
+            }
+        } else if (event.key === 'f') {
+            currentFadeIndex = (currentFadeIndex + 1) % fadeLevels.length
+            document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
         }
-    } else if (event.key === 'f') {
-        currentFadeIndex = (currentFadeIndex + 1) % fadeLevels.length
-        document.body.style.setProperty('--fade-level', fadeLevels[currentFadeIndex])
     }
 })
 
